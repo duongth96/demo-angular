@@ -1,0 +1,26 @@
+.margin-left-10{margin-left: 10px;}
+.main-container{
+    height: 100vh;
+    width: 100vw;
+}
+.nav-mainsize{
+    width: 250px;
+}
+.padding{
+    padding-left: 16px;
+    padding-right: 16px;
+} 
+.page-toolbar{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.page-toolbar .example-spacer{
+    flex: 1 1 auto;
+}
+.row-is-selected{
+    background-color: #ddd !important;
+}
+.nav-item-active{
+    background-color: lightsteelblue
+}
