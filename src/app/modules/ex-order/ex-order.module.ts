@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {MatIconModule} from '@angular/material/icon'
@@ -19,19 +20,20 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { BarcodeScannerLivestreamModule } from "ngx-barcode-scanner";
 
-import { StoreRoutingModule } from './store-routing.module';
-import { ProductComponent } from './product/product.component';
-import { CreateOrUpdateComponent } from './product/create-or-update/create-or-update.component';
 
+import { ExOrderRoutingModule } from './ex-order-routing.module';
+import { CreateComponent,UpdatePricePipe } from './create/create.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
-    ProductComponent,
-    CreateOrUpdateComponent
+    CreateComponent,
+    ListComponent,
+    UpdatePricePipe
   ],
   imports: [
     CommonModule,
-    StoreRoutingModule,
+    ExOrderRoutingModule,
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
@@ -52,4 +54,4 @@ import { CreateOrUpdateComponent } from './product/create-or-update/create-or-up
     BarcodeScannerLivestreamModule
   ]
 })
-export class StoreModule { }
+export class ExOrderModule { }

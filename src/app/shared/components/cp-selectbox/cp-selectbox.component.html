@@ -1,0 +1,28 @@
+<mat-form-field [appearance]="appearance" class="example-chip-list" style="width: 100%;">
+    <mat-label>{{_label}}</mat-label>
+    <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip
+            *ngFor="let fruit of fruits"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(fruit)">
+            {{fruit[_bindText] || fruit}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+            placeholder="{{_placeholder}}"
+            #fruitInput
+            [formControl]="fruitCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit[_bindValue] || fruit[_bindText] || fruit">
+        {{fruit[_bindText] || fruit}}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="control.errors?.required && control.touched">Không bỏ trống</mat-error>
+</mat-form-field>
+  

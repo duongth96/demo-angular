@@ -24,3 +24,6 @@
 .nav-item-active{
     background-color: lightsteelblue
 }
+.width-100{
+    width: 100%;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {CreateOrUpdateComponent} from './create-or-update/create-or-update.component'
 
 @Component({
   selector: 'app-product',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _MatDialog:MatDialog
+  ) { }
 
   filterToggle = false
 
@@ -41,6 +45,17 @@ export class ProductComponent implements OnInit {
 
   onDelete(event:any){
     
+  }
+
+  onOpenModal_CreateOrUpdate():void{
+    const dialogRef = this._MatDialog.open(CreateOrUpdateComponent, {
+      width: '800px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

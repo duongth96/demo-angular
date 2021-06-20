@@ -1,1 +1,101 @@
-<p>create-or-update works!</p>
+<h1 mat-dialog-title>{{dialogTitle}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formCreateOrUpdate" >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="avatar">
+          <barcode-scanner-livestream
+            [type]="['ean']"
+            (valueChanges)="onValueChanges($event)"
+            (started)="(onStarted)"
+            style="width: 100%; height: 100%;"
+          ></barcode-scanner-livestream>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <mat-form-field appearance="outline" class="width-100">
+          <mat-label>Tên</mat-label>
+          <input matInput placeholder="" [(ngModel)]="model.name" formControlName="name">
+          <mat-error *ngIf="f.name.errors?.required && f.name.touched">Không bỏ trống</mat-error>
+        </mat-form-field>
+        <div class="col-md-12">
+          <div class="row">
+            <mat-form-field appearance="outline" style="width: 85%; float: left;">
+              <mat-label>Mã</mat-label>
+              <input matInput [(ngModel)]="model.barCode" formControlName="barCode">
+              <mat-icon matSuffix>qr_code</mat-icon>
+              <mat-error *ngIf="f.barCode.errors?.required && f.barCode.touched">Không bỏ trống</mat-error>
+            </mat-form-field>
+            <div style="float: right;">
+              <button mat-fab aria-label="Example icon button with a heart icon">
+                <mat-icon>qr_code_scanner</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Đơn vị</mat-label>
+              <input matInput [(ngModel)]="model.unit" formControlName="unit">
+              <mat-error *ngIf="f.unit.errors?.required && f.unit.touched">Không bỏ trống</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Số lượng</mat-label>
+              <input matInput type="number" [(ngModel)]="model.quantity" formControlName="quantity">
+              <mat-icon matSuffix>pin</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Giá mua vào</mat-label>
+              <input matInput type="number" [(ngModel)]="model.cost" formControlName="cost">
+              <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Giá bán</mat-label>
+              <input matInput type="number" [(ngModel)]="model.price" formControlName="price">
+              <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <app-cp-selectbox [data]="listGroup"
+          [(ngModel)]="model.group"
+          formControlName="group"
+          bindValue="uid" 
+          bindText="name"
+          label="Phân loại"
+          appearance="outline"
+          ></app-cp-selectbox>
+         
+          <!-- <mat-form-field appearance="outline" class="width-100">
+            <mat-label>Toppings</mat-label>
+            <mat-select formControlName="group" multiple>
+              <mat-select-trigger>
+                {{f.group.value ? f.group.value[0] : ''}}
+                <span *ngIf="f.group.value?.length > 1" class="example-additional-selection">
+                  (+{{f.group.value.length - 1}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let group of listGroup" [value]="group.uid">{{group.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>           -->
+        
+      </div>
+      
+    </div>
+    
+    
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+    <!-- [mat-dialog-close]="" -->
+  <button mat-button (click)="onNoClick()">Hủy</button> 
+  <button mat-flat-button color="primary" cdkFocusInitial (click)="onSave()">Lưu</button>
+</div>

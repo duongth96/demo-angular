@@ -6,14 +6,14 @@
     </button>
     <span class="example-spacer"></span>
     <ng-container *ngIf="selectedRow != null">
-        <button mat-icon-button color="primary" matTooltip="Sửa">
+        <button mat-icon-button color="primary" matTooltip="Sửa" (click)="onOpenModal_CreateOrUpdate()">
             <mat-icon>drive_file_rename_outline</mat-icon>
         </button>
         <button mat-icon-button color="warn" matTooltip="Xóa" (appConfirmClick)="onDelete($event)">
             <mat-icon>delete_forever</mat-icon>
         </button>
     </ng-container>
-    <button mat-flat-button color="primary">
+    <button mat-flat-button color="primary" (click)="onOpenModal_CreateOrUpdate()">
         <mat-icon>add</mat-icon> Thêm mới
     </button>
 </div>
